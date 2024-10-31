@@ -1,0 +1,9 @@
+<navigation-rule>
+    <from-view-id>
+        /hello.xhtml
+    </from-view-id>
+    <navigation-case>
+        <from-outcome>response</from-outcome>
+        <to-view-id>/response.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
