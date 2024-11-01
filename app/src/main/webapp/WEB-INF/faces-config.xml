@@ -1,6 +1,6 @@
 <navigation-rule>
     <from-view-id>
-        /hello.xhtml
+        /index.xhtml
     </from-view-id>
     <navigation-case>
         <from-outcome>response</from-outcome>
