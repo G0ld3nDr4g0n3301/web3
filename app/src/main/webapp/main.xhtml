@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <meta charset="UTF-8"/>
+    <title>web lab 3</title>
+    <h:outputStylesheet library="css" name="main_styles.css" />
+    <h:outputScript library="js" name="main.js" />
+    <f:metadata>
+        <f:viewAction action="#{xCoordinateBean.initialize}" />
+        <f:viewAction action="#{yCoordinateBean.initialize}" />
+        <f:viewAction action="#{rCoordinateBean.initialize}" />
+        <f:viewAction action="#{coordinateHandlerBean.initialize}" />
+        <f:viewAction action="#{resultControllerBean.initialize}" />
+    </f:metadata>
+
+</h:head>
+
+<h:body style="background: url('#{request.contextPath}/resources/images/cover.jpg') fixed; background-size: cover;">
+    <!-- Header -->
+    <h:panelGroup>
+        Думцев Виктор Сергеевич, P3212
+    </h:panelGroup>
+    <div>
+        <!-- Graph and user data input section -->
+        <h:panelGroup>
+            <h:panelGroup>
+
+            </h:panelGroup>
+
+            <h:panelGroup>
+
+            </h:panelGroup>
+
+            <!-- Input section -->
+            <h:form id="input-from">
+
+                <h:form id="xForm">
+                    <h:outputText id="xValueLabel" value="X: #{xCoordinateBean.x}" />
+                    
+                    <h:commandLink action="#{xCoordinateBean.setX(-4)}">
+                        <h:outputText value="-4" />
+                        <f:ajax execute="xForm" render="xValueLabel"/>
+                    </h:commandLink>
+                    <h:commandLink actionListener="#{xCoordinateBean.setX(-3)}">
+                        <h:outputText value="-3" />
+                    </h:commandLink>
+                    <h:commandLink actionListener="#{xCoordinateBean.setX(-2)}">
+                        <h:outputText value="-2" />
+                    </h:commandLink>
+                    <h:commandLink actionListener="#{xCoordinateBean.setX(-1)}">
+                        <h:outputText value="-1" />
+                    </h:commandLink>
+                    <h:commandLink actionListener="#{xCoordinateBean.setX(0)}">
+                        <h:outputText value="0" />
+                    </h:commandLink>
+                    <h:commandLink actionListener="#{xCoordinateBean.setX(1)}">
+                        <h:outputText value="1" />
+                    </h:commandLink>
+                    <h:commandLink actionListener="#{xCoordinateBean.setX(2)}">
+                        <h:outputText value="2" />
+                    </h:commandLink>
+                    <h:commandLink actionListener="#{xCoordinateBean.setX(3)}">
+                        <h:outputText value="3" />
+                    </h:commandLink>
+                    <h:commandLink actionListener="#{xCoordinateBean.setX(4)}">
+                        <h:outputText value="4" />
+                    </h:commandLink>
+                    <h:message for="xValue" />
+                </h:form>
+
+                <!-- Y Input -->
+                <h:panelGroup>
+                    <h:outputLabel for="yValue" value="Y: (-3, 5)" />
+                    <h:inputText id="yValue" value="#{yCoordinateBean.y}">
+                        <f:validateDoubleRange minimum="-3" maximum="5"/>
+                    </h:inputText>
+                    <h:message for="yValue" />
+                </h:panelGroup>
+
+                <!-- R Input -->
+                <h:panelGroup>
+                    <h:outputText id="rValueLabel" value="R: " />
+
+                        <h:commandLink actionListener="#{rCoordinateBean.setR(1)}">
+                            <h:outputText value="1" />
+                        </h:commandLink>
+                        <h:commandLink actionListener="#{rCoordinateBean.setR(2)}">
+                            <h:outputText value="2" />
+                        </h:commandLink>
+                        <h:commandLink actionListener="#{rCoordinateBean.setR(3)}">
+                            <h:outputText value="3" />
+                        </h:commandLink>
+                        <h:commandLink actionListener="#{rCoordinateBean.setR(4)}">
+                            <h:outputText value="4" />
+                        </h:commandLink>
+                        <h:commandLink actionListener="#{rCoordinateBean.setR(5)}">
+                            <h:outputText value="5" />
+                        </h:commandLink>
+                    <h:message for="rValue" />
+                </h:panelGroup>
+
+                <!-- Submit Button -->
+                <h:commandButton value="Check">
+                    <f:ajax execute="@form"
+                        listener="#{resultsControllerBean.addResult(xCoordinateBean.x, yCoordinateBean.y, rCoordinateBean.r)}"
+                        render="@form results-table" />
+                </h:commandButton>
+            </h:form>
+        </h:panelGroup>
+    </div>
+    <!-- Data table -->
+    <h:panelGroup layout="block">
+        <h:dataTable var="result" value="#{resultControllerBean.results}" id="results-table">
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="x" />
+                </f:facet>
+                <h:outputText value="#{result.x}" />
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="y" />
+                </f:facet>
+                <h:outputText value="#{result.y}" />
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="r" />
+                </f:facet>
+                <h:outputText value="#{result.r}" />
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="result" />
+                </f:facet>
+                <h:outputText value="#{result.result}" />
+            </h:column>
+
+        </h:dataTable>
+    </h:panelGroup>
+
+
+    <!-- Link to index.xhtml -->
+    <div></div>
+</h:body>
+
+
+</html>
