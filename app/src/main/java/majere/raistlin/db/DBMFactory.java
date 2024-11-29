@@ -11,7 +11,7 @@ public class DBMFactory {
 
     static {
         try {
-            dbcon = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:FREE", "SYS", "test123");
+            dbcon = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:FREE", "SYS AS SYSDBA", "test123");
             if (dbcon != null) {
                 System.out.println("Connected to DB!");
             } else {

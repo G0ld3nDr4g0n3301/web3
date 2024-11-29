@@ -1,6 +1,8 @@
 package majere.raistlin;
 
 import java.util.*;
+
+import jakarta.inject.Named;
 import majere.raistlin.db.DBMFactory;
 import majere.raistlin.entities.ResultEntity;
 import jakarta.annotation.PostConstruct;
@@ -10,9 +12,9 @@ import majere.raistlin.utils.AreaChecker;
 import jakarta.faces.annotation.ManagedProperty;
 //import jakarta.annotation.*;
 import java.io.Serializable;
-import jakarta.faces.bean.*;
+import jakarta.enterprise.context.ApplicationScoped;
 
-@ManagedBean(name="resultsControllerBean")
+@Named("resultsControllerBean")
 @Getter
 @Setter
 @ApplicationScoped

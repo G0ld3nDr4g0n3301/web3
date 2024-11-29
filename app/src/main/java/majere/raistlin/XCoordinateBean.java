@@ -7,20 +7,16 @@ import lombok.extern.slf4j.Slf4j;
 //import jakarta.annotation.*;
 import java.io.Serializable;
 
-import jakarta.faces.bean.*;
+//import jakarta.faces.bean.*;
 import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.*;
+import jakarta.inject.Named;
 
-@ManagedBean(name = "xCoordinateBean")
+@Named("xCoordinateBean")
 @SessionScoped
-@NoArgsConstructor
 @Data
-@Slf4j
+@NoArgsConstructor
 public class XCoordinateBean implements Serializable {
     private Integer x;
-
-    @PostConstruct
-    private void init() {
-    log.info("####################################\nIM ALIVE!\n####################################");
-    }
 
 }

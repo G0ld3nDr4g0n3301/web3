@@ -14,17 +14,18 @@ public class ResultDBMImplementation implements ResultDBM{
 
     public Boolean addNewDot(ResultEntity res){
 
-        String query = String.format("INSERT INTO RESULTS (x,y,r,result) VALUES (%i,%f,%i,%b);", res.getX(), res.getY(), res.getR(), res.getResult());
+        String query = String.format("INSERT INTO RESULTS (x,y,r,result) VALUES (%d,%f,%d,%b)", res.getX(), res.getY(), res.getR(), res.getResult());
         try {
             con.createStatement().executeUpdate(query);
             return true;
         } catch (SQLException e){
+            e.printStackTrace();
             return false;
         }
     }
 
     public Boolean clearResults(){
-        String query = "TRUNCATE TABLE RESULTS;";
+        String query = "TRUNCATE TABLE RESULTS";
         try {
             con.createStatement().executeUpdate(query);
             return true;
@@ -35,7 +36,7 @@ public class ResultDBMImplementation implements ResultDBM{
 
     public List<ResultEntity> getAllResults() {
 
-        String query = "SELECT * FROM RESULTS;";
+        String query = "SELECT * FROM RESULTS";
         try {
             ResultSet resultSet = con.createStatement().executeQuery(query);
 
@@ -51,6 +52,7 @@ public class ResultDBMImplementation implements ResultDBM{
         
             return results;
         } catch (SQLException e){
+            e.printStackTrace();
             return null;
         }
     }

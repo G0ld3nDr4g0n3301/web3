@@ -1,13 +1,24 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<faces-config version="3.0" xmlns="https://jakarta.ee/xml/ns/jakartaee"
+<faces-config version="2.0" xmlns="https://jakarta.ee/xml/ns/jakartaee"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
                                   https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_3_0.xsd">
 
 
+
+    <managed-bean>
+    <description>Current date and time</description>
+    <managed-bean-name>now</managed-bean-name>
+    <managed-bean-class>java.util.Date</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+
+
+
     <managed-bean>
         <managed-bean-name>xCoordinateBean</managed-bean-name>
-        <managed-bean-class>majere.raistlin.XCoordinateBean</managed-bean-class>
+        <managed-bean-class>majere.raistlin.XCoordinteBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
 

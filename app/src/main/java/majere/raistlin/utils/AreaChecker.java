@@ -7,6 +7,7 @@ public class AreaChecker {
             return false;
         }
 
+
         if (x >= 0 && y >= 0) {
             return x <= r && y <= r / 2;
         }
@@ -14,7 +15,7 @@ public class AreaChecker {
             return (x * x + y * y) <= (r * r) / 4;
         }
         else if (x <= 0 && y >= 0) {
-            return y >= (0.5*x + r/2);
+            return y <= (0.5*x + r/2);
         }
         return false;
     }

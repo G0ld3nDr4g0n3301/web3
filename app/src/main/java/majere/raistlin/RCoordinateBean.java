@@ -1,5 +1,7 @@
 package majere.raistlin;
 
+import jakarta.enterprise.context.SessionScoped;
+import jakarta.inject.Named;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -7,7 +9,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import jakarta.faces.bean.*;
 
-@ManagedBean(name="rCoordinateBean")
+@Named("rCoordinateBean")
 @SessionScoped
 @NoArgsConstructor
 @Data
