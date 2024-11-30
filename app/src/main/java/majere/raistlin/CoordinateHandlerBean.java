@@ -13,6 +13,6 @@ import jakarta.faces.bean.*;
 @Data
 @NoArgsConstructor
 public class CoordinateHandlerBean implements Serializable{
-    private Integer x;
+    private Float x;
     private Float y;
 }

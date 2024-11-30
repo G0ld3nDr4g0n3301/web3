@@ -11,7 +11,7 @@ import lombok.Builder;
 @NoArgsConstructor
 @Data
 public class ResultEntity {
-    private Integer x;
+    private Float x;
     private Float y;
     private Integer r;
     private Boolean result;

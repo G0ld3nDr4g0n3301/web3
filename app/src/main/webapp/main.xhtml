@@ -167,11 +167,10 @@
     <h:form id="graph-form">
         <h:inputHidden id="xGraphValue" value="#{coordinateHandlerBean.x}"/>
         <h:inputHidden id="yGraphValue" value="#{coordinateHandlerBean.y}"/>
-        <h:commandButton id="handleClick" styleClass="hidden">
-            <f:ajax execute="@form"
-                    listener="#{resultsControllerBean.addNewResult(coordinateHandlerBean.x, coordinateHandlerBean.y, rCoordinateBean.r)}"
-                    render="@form xGraphValue yGraphValue results-table"/>
-        </h:commandButton>
+        <h:commandLink id="handleClick" styleClass="hidden" actionListener="#{resultsControllerBean.addNewResult(coordinateHandlerBean.x, coordinateHandlerBean.y, rCoordinateBean.r)}">
+            <f:ajax execute="graph-form"
+                    render="xGraphValue yGraphValue results-table"/>
+        </h:commandLink>
     </h:form>
 
 

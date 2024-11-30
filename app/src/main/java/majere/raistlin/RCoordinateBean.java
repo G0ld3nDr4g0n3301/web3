@@ -14,5 +14,5 @@ import jakarta.faces.bean.*;
 @NoArgsConstructor
 @Data
 public class RCoordinateBean implements Serializable{
-    private Integer r;
+    private Integer r = 3;
 }

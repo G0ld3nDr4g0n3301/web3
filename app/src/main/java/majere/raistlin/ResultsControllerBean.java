@@ -2,6 +2,7 @@ package majere.raistlin;
 
 import java.util.*;
 
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import majere.raistlin.db.DBMFactory;
 import majere.raistlin.entities.ResultEntity;
@@ -36,11 +37,20 @@ public class ResultsControllerBean implements Serializable{
         results = DBMFactory.getInstance().getResultDBM().getAllResults();
     }
     
-    public void addNewResult(Integer x, Float y, Integer r){
+    public void addNewResult(Float x, Float y, Integer r){
         Boolean res = AreaChecker.checkDot(x,y,r);
         ResultEntity entity = new ResultEntity(x,y,r,res);
         results.add(entity);
         DBMFactory.getInstance().getResultDBM().addNewDot(entity);
+
+
+        String script = String.format(
+                Locale.US, "window.drawDot(%f, %f, %d, %b, true);", x, y, r,
+                res);
+        FacesContext.getCurrentInstance()
+                .getPartialViewContext()
+                .getEvalScripts()
+                .add(script);
     }
 
 
