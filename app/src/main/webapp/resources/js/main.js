@@ -14,20 +14,22 @@ document.addEventListener("DOMContentLoaded",(e) => {
    });
 
    canvas.addEventListener("click", (e) => {
-
-       let {x, y} = coordsAbsoluteToDecart(e.clientX, e.clientY,r);
-       drawDot(e.clientX, e.clientY, r, undefined, false);
+       console.log(e.offsetX, e.offsetY);
+       let {x, y} = coordsAbsoluteToDecart(e.offsetX, e.offsetY,r);
+       drawDot(e.offsetX, e.offsetY, r, undefined, false);
        checkDot(x,y);
    });
 
 });
 
 window.coordsAbsoluteToDecart = function coordsAbsoluteToDecart(x,y,r){
-    return {x: (x - canvas.width / 2)*r/250, y: (canvas.height / 2 - y)*r/240};
+    return {x: (x - canvas.width / 2)*r/250, y: (canvas.height / 2 - y)*r/250};
 }
 
-window.coordsDecartToAbsolute = function coordsDecartToAbsolute(x,y,r) {
-    return {x: (x*250/r + canvas.width / 2), y: (-y*240/r + canvas.height / 2)};
+window.coordsDecartToAbsolute = function coordsDecartToAbsolute(src_x,src_y,r) {
+    let x = (src_x*250/r + canvas.width / 2);
+    let y = (-(src_y*250/r - canvas.height / 2));
+    return {x: x, y: y};
 }
 
 window.clearDots = function clearDots() {
@@ -43,10 +45,10 @@ window.checkDot = function checkDot(x,y){
 }
 
 
-window.drawDot = function drawDot(src_x,src_y, r, result, isDecart = false) {
+window.drawDot = function drawDot(src_x,src_y, r, result, isDecart) {
     let x,y;
-    if(isDecart){
-        ({x,y} = coordsDecartToAbsolute(x,y,r));
+    if(isDecart === true){
+        ({x,y} = coordsDecartToAbsolute(src_x,src_y,r));
     } else {
         x = src_x;
         y = src_y;

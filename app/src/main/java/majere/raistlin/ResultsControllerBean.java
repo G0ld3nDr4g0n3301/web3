@@ -45,7 +45,8 @@ public class ResultsControllerBean implements Serializable{
 
 
         String script = String.format(
-                Locale.US, "window.drawDot(%f, %f, %d, %b, true);", x, y, r,
+                Locale.US, "drawDot(%f, %f, %d, %b, true);", x, y, r,
+                res,x, y, r,
                 res);
         FacesContext.getCurrentInstance()
                 .getPartialViewContext()
@@ -53,9 +54,17 @@ public class ResultsControllerBean implements Serializable{
                 .add(script);
     }
 
+    public void updateCanvas(Integer r){
+
+    }
 
     public void clearResults(){
         results.clear();
         DBMFactory.getInstance().getResultDBM().clearResults();
+        String script = "clearDots();";
+        FacesContext.getCurrentInstance()
+                .getPartialViewContext()
+                .getEvalScripts()
+                .add(script);
     }
 }
