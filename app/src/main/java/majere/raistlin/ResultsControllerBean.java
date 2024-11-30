@@ -46,7 +46,6 @@ public class ResultsControllerBean implements Serializable{
 
         String script = String.format(
                 Locale.US, "drawDot(%f, %f, %d, %b, true);", x, y, r,
-                res,x, y, r,
                 res);
         FacesContext.getCurrentInstance()
                 .getPartialViewContext()
@@ -55,7 +54,17 @@ public class ResultsControllerBean implements Serializable{
     }
 
     public void updateCanvas(Integer r){
+        for(ResultEntity entity : results){
+            Boolean newRes = AreaChecker.checkDot(entity.getX(),entity.getY(),r);
 
+            String script = String.format(
+                    Locale.US, "drawDot(%f, %f, %d, %b, true);",entity.getX(), entity.getY(), r,
+                    newRes);
+            FacesContext.getCurrentInstance()
+                    .getPartialViewContext()
+                    .getEvalScripts()
+                    .add(script);
+        }
     }
 
     public void clearResults(){

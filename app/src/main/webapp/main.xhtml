@@ -40,23 +40,23 @@
                 <h:form id="rForm">
                     <h:outputText id="rValueLabel" value="R: #{rCoordinateBean.r}" />
 
-                    <h:commandLink actionListener="#{rCoordinateBean.setR(1)}">
+                    <h:commandLink actionListener="#{rCoordinateBean.updateRadius(1)}">
                         <h:outputText value="1" />
                         <f:ajax execute="rForm" render="rValueLabel"/>
                     </h:commandLink>
-                    <h:commandLink actionListener="#{rCoordinateBean.setR(2)}">
+                    <h:commandLink actionListener="#{rCoordinateBean.updateRadius(2)}">
                         <h:outputText value="2" />
                         <f:ajax execute="rForm" render="rValueLabel"/>
                     </h:commandLink>
-                    <h:commandLink actionListener="#{rCoordinateBean.setR(3)}">
+                    <h:commandLink actionListener="#{rCoordinateBean.updateRadius(3)}">
                         <h:outputText value="3" />
                         <f:ajax execute="rForm" render="rValueLabel"/>
                     </h:commandLink>
-                    <h:commandLink actionListener="#{rCoordinateBean.setR(4)}">
+                    <h:commandLink actionListener="#{rCoordinateBean.updateRadius(4)}">
                         <h:outputText value="4" />
                         <f:ajax execute="rForm" render="rValueLabel"/>
                     </h:commandLink>
-                    <h:commandLink actionListener="#{rCoordinateBean.setR(5)}">
+                    <h:commandLink actionListener="#{rCoordinateBean.updateRadius(5)}">
                         <h:outputText value="5" />
                         <f:ajax execute="rForm" render="rValueLabel"/>
                     </h:commandLink>
@@ -177,12 +177,10 @@
 
     <!-- Redraw points on canvas -->
     <h:form id="update-radius">
-        <h:inputHidden id="radius" value="#{rCoordinateBean.r}"/>
-        <h:commandButton id="updateCanvas" styleClass="hidden">
+        <h:commandLink id="updateCanvas" styleClass="hidden" actionListener="#{resultsControllerBean.updateCanvas(rCoordinateBean.r)}">
             <f:ajax execute="@form"
-                    listener="#{resultsControllerBean.updateCanvas(rCoordinateBean.r)}"
                     render="@form results-table"/>
-        </h:commandButton>
+        </h:commandLink>
     </h:form>
 
 </h:body>
