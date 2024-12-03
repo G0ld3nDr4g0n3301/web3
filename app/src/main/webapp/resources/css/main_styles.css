@@ -1,3 +1,58 @@
 .hidden {
     display: none;
 }
+
+body {
+    background: linear-gradient(to right, hsl(32, 94%, 27%), hsl(53, 100%, 50%));
+}
+
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.canvas-grid {
+    text-align: center;
+}
+
+table, th, td {
+    border: 1px solid;
+}
+
+#results-table{
+    margin-top: 30px;
+    border-collapse: collapse;
+    table-layout: fixed;
+    text-align: center;
+    width: 100%;
+}
+
+.xColumn {
+    width: 25%;
+}
+.yColumn {
+    width: 25%;
+}
+.rColumn {
+    width: 25%;
+}
+.resColumn {
+    width: 25%;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.link-centered {
+    text-align: center;
+    font-size: xx-large;
+}
+
+a {
+    margin: 3px;
+}

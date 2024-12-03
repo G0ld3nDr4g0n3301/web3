@@ -30,19 +30,22 @@ public class ResultsControllerBean implements Serializable{
     @ManagedProperty(value="#{rCoordinateBean}")
     private RCoordinateBean rCoordinateBean;
 
+
     private List<ResultEntity> results = new ArrayList<ResultEntity>();
 
     @PostConstruct
     public void init(){
         results = DBMFactory.getInstance().getResultDBM().getAllResults();
+        Collections.reverse(results);
     }
-    
+
+
+
     public void addNewResult(Float x, Float y, Integer r){
         Boolean res = AreaChecker.checkDot(x,y,r);
         ResultEntity entity = new ResultEntity(x,y,r,res);
-        results.add(entity);
+        results.add(0, entity);
         DBMFactory.getInstance().getResultDBM().addNewDot(entity);
-
 
         String script = String.format(
                 Locale.US, "drawDot(%f, %f, %d, %b, true);", x, y, r,
@@ -71,6 +74,7 @@ public class ResultsControllerBean implements Serializable{
         results.clear();
         DBMFactory.getInstance().getResultDBM().clearResults();
         String script = "clearDots();";
+
         FacesContext.getCurrentInstance()
                 .getPartialViewContext()
                 .getEvalScripts()

@@ -31,6 +31,7 @@ dependencies {
     implementation("jakarta.servlet:jakarta.servlet-api:6.1.0")
     implementation("jakarta.faces:jakarta.faces-api:4.1.1")
     implementation("com.oracle.database.jdbc:ojdbc11:23.6.0.24.10")
+    implementation("net.bootsfaces:bootsfaces:2.0.1")
     implementation("ch.qos.logback:logback-classic:1.2.9")
 
     compileOnly("org.projectlombok:lombok:1.18.30")

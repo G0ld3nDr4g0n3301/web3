@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
     <meta charset="UTF-8"/>
@@ -16,30 +18,32 @@
 
 </h:head>
 
-<h:body style="background: url('#{request.contextPath}/resources/images/cover.jpg') fixed; background-size: cover;">
+<h:body>
     <!-- Header -->
-    <h:panelGroup>
-        Думцев Виктор Сергеевич, P3212
+    <h:panelGroup styleClass="header">
+        <h1 style="text-align: center">
+        Думцев Виктор Сергеевич, P3212, Вариант 12021
+        </h1>
     </h:panelGroup>
-    <div>
+    <div class="container">
         <!-- Graph and user data input section -->
         <h:panelGroup>
-            <h:panelGroup layout="block">
+            <h:panelGroup layout="block" styleClass="canvas-grid">
                 <canvas id="graphCanvas" width="650" height="650" class="graph"/>
             </h:panelGroup>
 
-            <h:panelGroup>
+            <!-- Input section -->
+            <div class="inputs">
+            <h:form id="input-from" styleClass="input-grid">
+
                 <button id="clearPointsBtn" class="btn" onclick="clickOnClearBtn()">
                     clear
                 </button>
-            </h:panelGroup>
+                <br/>
+                <h:form id="rForm" style="display: inline">
 
-            <!-- Input section -->
-            <h:form id="input-from">
-
-                <h:form id="rForm">
                     <h:outputText id="rValueLabel" value="R: #{rCoordinateBean.r}" />
-
+                    <br/>
                     <h:commandLink actionListener="#{rCoordinateBean.updateRadius(1)}">
                         <h:outputText value="1" />
                         <f:ajax execute="rForm" render="rValueLabel"/>
@@ -61,10 +65,10 @@
                         <f:ajax execute="rForm" render="rValueLabel"/>
                     </h:commandLink>
                 </h:form>
-
-                <h:form id="xForm">
+                <br/>
+                <h:form id="xForm" style="display: inline">
                     <h:outputText id="xValueLabel" value="X: #{xCoordinateBean.x}" />
-                    
+                    <br/>
                     <h:commandLink action="#{xCoordinateBean.setX(-4)}">
                         <h:outputText value="-4" />
                         <f:ajax execute="xForm" render="xValueLabel"/>
@@ -102,59 +106,49 @@
                         <f:ajax execute="xForm" render="xValueLabel"/>
                     </h:commandLink>
                 </h:form>
-
-                <h:form id="yForm">
-                    <h:outputLabel id="yValueLabel" value="Y: #{yCoordinateBean.y}" />
-                    <h:inputText id="yValue" required="true" immediate="true" value="#{yCoordinateBean.y}" maxlength="8" />
-                    <h:message for="yValue" />
+                <br/>
+                <h:form id="yForm" style="display: inline">
+                    <h:outputLabel id="yValueLabel" value="Y: " />
+                    <br/>
+                    <h:inputText id="yValue" required="true" immediate="true" value="#{yCoordinateBean.y}" maxlength="8" >
+                    <f:validateDoubleRange minimum="-3" maximum="8"/>
+                    </h:inputText>
 
                     <h:commandButton value="Check">
                         <f:ajax execute="@form"
                                 listener="#{resultsControllerBean.addNewResult(xCoordinateBean.x, yCoordinateBean.y, rCoordinateBean.r)}"
                                 render="@form results-table" />
                     </h:commandButton>
+
+                    <br/>
+
+                    <h:message for="yValue" />
                 </h:form>
 
 
             </h:form>
+            </div>
         </h:panelGroup>
-    </div>
 
+    <br/>
     <!-- Data table -->
-    <h:panelGroup layout="block">
-        <h:dataTable var="result" value="#{resultsControllerBean.results}" id="results-table">
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="x" />
-                </f:facet>
-                <h:outputText value="#{result.x}" />
-            </h:column>
+    <h:panelGroup layout="block" styleClass="table-grid">
+        <h:form id="resultstable">
+        <b:dataTable var="result" value="#{resultsControllerBean.results}" striped="false" row-highlight="false" searching="false" searchable="false">
+            <b:dataTableColumn value="#{result.x}"/>
+            <b:dataTableColumn value="#{result.y}"/>
+            <b:dataTableColumn value="#{result.r}"/>
+            <b:dataTableColumn value="#{result.result}"/>
 
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="y" />
-                </f:facet>
-                <h:outputText value="#{result.y}" />
-            </h:column>
+        </b:dataTable>
+        </h:form>
 
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="r" />
-                </f:facet>
-                <h:outputText value="#{result.r}" />
-            </h:column>
-
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="result" />
-                </f:facet>
-                <h:outputText value="#{result.result}" />
-            </h:column>
-
-        </h:dataTable>
     </h:panelGroup>
 
-
+    </div>
+    <div class="link-centered">
+        <a href="index.xhtml">Часы</a>
+    </div>
     <!-- Delete everything -->
     <h:form id="clear-points">
         <!-- Hidden btn for clearing all the points -->
@@ -167,10 +161,11 @@
     <h:form id="graph-form">
         <h:inputHidden id="xGraphValue" value="#{coordinateHandlerBean.x}"/>
         <h:inputHidden id="yGraphValue" value="#{coordinateHandlerBean.y}"/>
-        <h:commandLink id="handleClick" styleClass="hidden" actionListener="#{resultsControllerBean.addNewResult(coordinateHandlerBean.x, coordinateHandlerBean.y, rCoordinateBean.r)}">
-            <f:ajax execute="graph-form"
-                    render="xGraphValue yGraphValue results-table"/>
-        </h:commandLink>
+        <b:commandButton onclick="resultstableJ_idt55Widget.DataTable().destroy();ajax:resultsControllerBean.addNewResult(coordinateHandlerBean.x, coordinateHandlerBean.y, rCoordinateBean.r)"
+                         update="resultstable:j_idt55"
+                         id="handleClick" styleClass="hidden">
+
+        </b:commandButton>
     </h:form>
 
 
@@ -182,6 +177,7 @@
                     render="@form results-table"/>
         </h:commandLink>
     </h:form>
+
 
 </h:body>
 

@@ -3,7 +3,7 @@
 }
 
 body {
-    background: linear-gradient(to right, hsl(32, 84%, 54%), hsl(29, 91%, 34%));
+    background: linear-gradient(to right, hsl(55, 100%, 49%), hsl(25, 100%, 50%));
 }
 
 .header {
@@ -35,6 +35,11 @@ body {
     height: 100%;
     text-align: center;
     transform: rotate(var(--rotation));
+}
+
+.link {
+    font-size: xx-large;
+    text-align: center;
 }
 
 .clock .number1 { --rotation: 30deg; }

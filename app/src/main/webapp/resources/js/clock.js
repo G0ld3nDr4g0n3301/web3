@@ -16,7 +16,7 @@ function main() {
 
     setClock();
 
-    setInterval(setClock, 1000);
+    setInterval(setClock, 7000);
 }
 
 

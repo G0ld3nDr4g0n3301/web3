@@ -17,6 +17,6 @@ import jakarta.inject.Named;
 @Data
 @NoArgsConstructor
 public class XCoordinateBean implements Serializable {
-    private Float x;
+    private Float x = 0f;
 
 }
