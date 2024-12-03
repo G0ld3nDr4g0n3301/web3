@@ -66,3 +66,12 @@ window.clickOnClearBtn = function clickOnClearBtn(){
     $("#clear-points\\:clearPoints").click();
 }
 
+
+
+window.secretY = function secretY(){
+    console.log("HEEEPL");
+    let y = $("#yInput").val();
+    console.log(y);
+    $("#y-form\\:ySecretValue").val(y);
+    $("#y-form\\:handleClickY").click();
+}

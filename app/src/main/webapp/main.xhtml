@@ -34,99 +34,96 @@
 
             <!-- Input section -->
             <div class="inputs">
-            <h:form id="input-from" styleClass="input-grid">
+                <h:form id="input-form" styleClass="input-grid">
 
-                <button id="clearPointsBtn" class="btn" onclick="clickOnClearBtn()">
-                    clear
-                </button>
-                <br/>
-                <h:form id="rForm" style="display: inline">
-
-                    <h:outputText id="rValueLabel" value="R: #{rCoordinateBean.r}" />
+                    <button id="clearPointsBtn" class="btn" onclick="clickOnClearBtn()">
+                        clear
+                    </button>
                     <br/>
-                    <h:commandLink actionListener="#{rCoordinateBean.updateRadius(1)}">
-                        <h:outputText value="1" />
-                        <f:ajax execute="rForm" render="rValueLabel"/>
-                    </h:commandLink>
-                    <h:commandLink actionListener="#{rCoordinateBean.updateRadius(2)}">
-                        <h:outputText value="2" />
-                        <f:ajax execute="rForm" render="rValueLabel"/>
-                    </h:commandLink>
-                    <h:commandLink actionListener="#{rCoordinateBean.updateRadius(3)}">
-                        <h:outputText value="3" />
-                        <f:ajax execute="rForm" render="rValueLabel"/>
-                    </h:commandLink>
-                    <h:commandLink actionListener="#{rCoordinateBean.updateRadius(4)}">
-                        <h:outputText value="4" />
-                        <f:ajax execute="rForm" render="rValueLabel"/>
-                    </h:commandLink>
-                    <h:commandLink actionListener="#{rCoordinateBean.updateRadius(5)}">
-                        <h:outputText value="5" />
-                        <f:ajax execute="rForm" render="rValueLabel"/>
-                    </h:commandLink>
+                    <h:form id="rForm" style="display: inline">
+
+                        <h:outputText id="rValueLabel" value="R: #{rCoordinateBean.r}" />
+                        <br/>
+                        <h:commandLink actionListener="#{rCoordinateBean.updateRadius(1)}">
+                            <h:outputText value="1" />
+                            <f:ajax execute="rForm" render="rValueLabel"/>
+                        </h:commandLink>
+                        <h:commandLink actionListener="#{rCoordinateBean.updateRadius(2)}">
+                            <h:outputText value="2" />
+                            <f:ajax execute="rForm" render="rValueLabel"/>
+                        </h:commandLink>
+                        <h:commandLink actionListener="#{rCoordinateBean.updateRadius(3)}">
+                            <h:outputText value="3" />
+                            <f:ajax execute="rForm" render="rValueLabel"/>
+                        </h:commandLink>
+                        <h:commandLink actionListener="#{rCoordinateBean.updateRadius(4)}">
+                            <h:outputText value="4" />
+                            <f:ajax execute="rForm" render="rValueLabel"/>
+                        </h:commandLink>
+                        <h:commandLink actionListener="#{rCoordinateBean.updateRadius(5)}">
+                            <h:outputText value="5" />
+                            <f:ajax execute="rForm" render="rValueLabel"/>
+                        </h:commandLink>
+                    </h:form>
+                    <br/>
+                    <h:form id="xForm" style="display: inline">
+                        <h:outputText id="xValueLabel" value="X: #{xCoordinateBean.x}" />
+                        <br/>
+                        <h:commandLink action="#{xCoordinateBean.setX(-4)}">
+                            <h:outputText value="-4" />
+                            <f:ajax execute="xForm" render="xValueLabel"/>
+                        </h:commandLink>
+                        <h:commandLink actionListener="#{xCoordinateBean.setX(-3)}">
+                            <h:outputText value="-3" />
+                            <f:ajax execute="xForm" render="xValueLabel"/>
+                        </h:commandLink>
+                        <h:commandLink actionListener="#{xCoordinateBean.setX(-2)}">
+                            <h:outputText value="-2" />
+                            <f:ajax execute="xForm" render="xValueLabel"/>
+                        </h:commandLink>
+                        <h:commandLink actionListener="#{xCoordinateBean.setX(-1)}">
+                            <h:outputText value="-1" />
+                            <f:ajax execute="xForm" render="xValueLabel"/>
+                        </h:commandLink>
+                        <h:commandLink actionListener="#{xCoordinateBean.setX(0)}">
+                            <h:outputText value="0" />
+                            <f:ajax execute="xForm" render="xValueLabel"/>
+                        </h:commandLink>
+                        <h:commandLink actionListener="#{xCoordinateBean.setX(1)}">
+                            <h:outputText value="1" />
+                            <f:ajax execute="xForm" render="xValueLabel"/>
+                        </h:commandLink>
+                        <h:commandLink actionListener="#{xCoordinateBean.setX(2)}">
+                            <h:outputText value="2" />
+                            <f:ajax execute="xForm" render="xValueLabel"/>
+                        </h:commandLink>
+                        <h:commandLink actionListener="#{xCoordinateBean.setX(3)}">
+                            <h:outputText value="3" />
+                            <f:ajax execute="xForm" render="xValueLabel"/>
+                        </h:commandLink>
+                        <h:commandLink actionListener="#{xCoordinateBean.setX(4)}">
+                            <h:outputText value="4" />
+                            <f:ajax execute="xForm" render="xValueLabel"/>
+                        </h:commandLink>
+                    </h:form>
+                    <br/>
+                    <h:form id="yForm" style="display: inline">
+                        <h:outputLabel id="yValueLabel" value="Y: " />
+                        <br/>
+                        <input id="yInput"/>
+                        <!--<h:inputText validatorMessage="Auchtung! Y must be in range [-3;8]!" id="yValue" required="true" immediate="true" value="#{yCoordinateBean.y}" maxlength="8" >
+                            <f:validateDoubleRange minimum="-3" maximum="8"/>
+                        </h:inputText>
+
+-->
+
+                        <br/>
+                        <b:button onclick="secretY();">save</b:button>
+                        <!--<h:message for="yValue" /> -->
+                    </h:form>
+
+
                 </h:form>
-                <br/>
-                <h:form id="xForm" style="display: inline">
-                    <h:outputText id="xValueLabel" value="X: #{xCoordinateBean.x}" />
-                    <br/>
-                    <h:commandLink action="#{xCoordinateBean.setX(-4)}">
-                        <h:outputText value="-4" />
-                        <f:ajax execute="xForm" render="xValueLabel"/>
-                    </h:commandLink>
-                    <h:commandLink actionListener="#{xCoordinateBean.setX(-3)}">
-                        <h:outputText value="-3" />
-                        <f:ajax execute="xForm" render="xValueLabel"/>
-                    </h:commandLink>
-                    <h:commandLink actionListener="#{xCoordinateBean.setX(-2)}">
-                        <h:outputText value="-2" />
-                        <f:ajax execute="xForm" render="xValueLabel"/>
-                    </h:commandLink>
-                    <h:commandLink actionListener="#{xCoordinateBean.setX(-1)}">
-                        <h:outputText value="-1" />
-                        <f:ajax execute="xForm" render="xValueLabel"/>
-                    </h:commandLink>
-                    <h:commandLink actionListener="#{xCoordinateBean.setX(0)}">
-                        <h:outputText value="0" />
-                        <f:ajax execute="xForm" render="xValueLabel"/>
-                    </h:commandLink>
-                    <h:commandLink actionListener="#{xCoordinateBean.setX(1)}">
-                        <h:outputText value="1" />
-                        <f:ajax execute="xForm" render="xValueLabel"/>
-                    </h:commandLink>
-                    <h:commandLink actionListener="#{xCoordinateBean.setX(2)}">
-                        <h:outputText value="2" />
-                        <f:ajax execute="xForm" render="xValueLabel"/>
-                    </h:commandLink>
-                    <h:commandLink actionListener="#{xCoordinateBean.setX(3)}">
-                        <h:outputText value="3" />
-                        <f:ajax execute="xForm" render="xValueLabel"/>
-                    </h:commandLink>
-                    <h:commandLink actionListener="#{xCoordinateBean.setX(4)}">
-                        <h:outputText value="4" />
-                        <f:ajax execute="xForm" render="xValueLabel"/>
-                    </h:commandLink>
-                </h:form>
-                <br/>
-                <h:form id="yForm" style="display: inline">
-                    <h:outputLabel id="yValueLabel" value="Y: " />
-                    <br/>
-                    <h:inputText id="yValue" required="true" immediate="true" value="#{yCoordinateBean.y}" maxlength="8" >
-                    <f:validateDoubleRange minimum="-3" maximum="8"/>
-                    </h:inputText>
-
-                    <h:commandButton value="Check">
-                        <f:ajax execute="@form"
-                                listener="#{resultsControllerBean.addNewResult(xCoordinateBean.x, yCoordinateBean.y, rCoordinateBean.r)}"
-                                render="@form results-table" />
-                    </h:commandButton>
-
-                    <br/>
-
-                    <h:message for="yValue" />
-                </h:form>
-
-
-            </h:form>
             </div>
         </h:panelGroup>
 
@@ -145,17 +142,19 @@
 
     </h:panelGroup>
 
+
+
     </div>
     <div class="link-centered">
         <a href="index.xhtml">Часы</a>
     </div>
+
     <!-- Delete everything -->
     <h:form id="clear-points">
-        <!-- Hidden btn for clearing all the points -->
-        <h:commandLink id="clearPoints" styleClass="hidden" actionListener="#{resultsControllerBean.clearResults()}">
-            <f:ajax execute="clear-points"
-                    render="results-table"/>
-        </h:commandLink>
+        <b:commandButton onclick="resultstableJ_idt55Widget.DataTable().destroy();ajax:resultsControllerBean.clearResults()"
+                         update="resultstable:j_idt55"
+                         id="clearPoints" styleClass="hidden">
+        </b:commandButton>
     </h:form>
 
     <h:form id="graph-form">
@@ -169,15 +168,22 @@
     </h:form>
 
 
+    <h:form id="y-form">
+        <h:inputHidden id="ySecretValue" value="#{yCoordinateBean.y}"/>
+        <b:commandButton onclick="resultstableJ_idt55Widget.DataTable().destroy();ajax:resultsControllerBean.addNewResult(xCoordinateBean.x, yCoordinateBean.y, rCoordinateBean.r)"
+                         update="resultstable:j_idt55"
+                         id="handleClickY" styleClass="hidden">
 
-    <!-- Redraw points on canvas -->
+        </b:commandButton>
+    </h:form>
+
+
     <h:form id="update-radius">
         <h:commandLink id="updateCanvas" styleClass="hidden" actionListener="#{resultsControllerBean.updateCanvas(rCoordinateBean.r)}">
             <f:ajax execute="@form"
                     render="@form results-table"/>
         </h:commandLink>
     </h:form>
-
 
 </h:body>
 

@@ -40,6 +40,13 @@ public class ResultsControllerBean implements Serializable{
     }
 
 
+    public void addNewResult(Float x, Integer r){
+        String script = "clickSecretButton();";
+        FacesContext.getCurrentInstance()
+                .getPartialViewContext()
+                .getEvalScripts()
+                .add(script);
+    }
 
     public void addNewResult(Float x, Float y, Integer r){
         Boolean res = AreaChecker.checkDot(x,y,r);
@@ -47,6 +54,7 @@ public class ResultsControllerBean implements Serializable{
         results.add(0, entity);
         DBMFactory.getInstance().getResultDBM().addNewDot(entity);
 
+        System.out.println("HEEEELP");
         String script = String.format(
                 Locale.US, "drawDot(%f, %f, %d, %b, true);", x, y, r,
                 res);
@@ -54,6 +62,7 @@ public class ResultsControllerBean implements Serializable{
                 .getPartialViewContext()
                 .getEvalScripts()
                 .add(script);
+
     }
 
     public void updateCanvas(Integer r){
@@ -73,6 +82,7 @@ public class ResultsControllerBean implements Serializable{
     public void clearResults(){
         results.clear();
         DBMFactory.getInstance().getResultDBM().clearResults();
+
         String script = "clearDots();";
 
         FacesContext.getCurrentInstance()
