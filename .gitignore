@@ -2,7 +2,7 @@
 target
 bin
 .idea
-
+lib
 # Ignore Gradle project-specific cache directory
 .gradle
 
