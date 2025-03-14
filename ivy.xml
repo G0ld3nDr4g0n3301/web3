@@ -1,7 +1,15 @@
 <ivy-module version="2.0">
   <info organisation="majere.raistlin" module="project-name"/>
   <dependencies>
-    <dependency org="org.example" name="library" rev="1.0.0"/>
+    <dependency org="jakarta.platform" name="jakarta.jakartaee-web-api" rev="9.1.0"/>
+    <dependency org="jakarta.servlet" name="jakarta.servlet-api" rev="6.1.0"/>
+    <dependency org="jakarta.faces" name="jakarta.faces-api" rev="4.1.1"/>
+    <dependency org="com.oracle.database.jdbc" name="ojdbc11" rev="23.6.0.24.10"/>
+    <dependency org="net.bootsfaces" name="bootsfaces" rev="2.0.1"/>
+    <dependency org="ch.qos.logback" name="logback-classic" rev="1.2.9"/>
+
+    <dependency org="jakarta.enterprise" name="jakarta.enterprise.cdi-api" rev="4.0.1"/>
+    <dependency org="org.projectlombok" name="lombok" rev="1.18.30"/>
   </dependencies>
 </ivy-module>
 
