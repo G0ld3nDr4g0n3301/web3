@@ -1,31 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="ExampleProject" default="compile" basedir=".">
+	<project xmlns:ivy="antlib:org.apache.ivy.ant" name="project-name" default="default-target">
 
 
 
-	<!-- Define global properties -->
-	<property name="src.dir" value="src"/>
-	<property name="build.dir" value="build"/>
-	
-	<!-- Define classpath -->
-	<path id="classpath">
-		<fileset dir="${src.dir}" includes="*.java"/>
-	</path>
+		<!-- Define global properties -->
+		<property name="src.dir" value="src"/>
+		<property name="build.dir" value="build"/>
+		<property name="lib.dir" value="lib"/>
 
-	<!-- Target to initialize the build directory -->
-	<target name="init">
-		<mkdir dir="${build.dir}"/>
-	</target>
+		<!-- Define classpath -->
+		<path id="classpath">
+			<fileset dir="${src.dir}" includes="*.java"/>
+			<fileset dir="${lib.dir}" includes="*.jar"/>
+		</path>
 
-	<!-- Target to compile the source code -->
-	<target name="compile" depends="init">
-		<javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="classpath" includeantruntime="true"/>
-	</target>
+		<!-- Target to initialize the build directory -->
+		<target name="init">
+			<mkdir dir="${build.dir}"/>
+		</target>
 
-	<!-- Target to clean up the build directory -->
-	<target name="clean">
-		<delete dir="${build.dir}"/>
-	</target>
+		<target name="resolve" description="Retrieve dependencies with Ivy">
+			<ivy:retrieve/>
+		</target>
 
-</project>
+
+		<target name="compile-main" depends="resolve">
+			<!-- Create directory for generated sources -->
+			<mkdir dir="gen"/>
+
+			<javac srcdir="src/main" destdir="build/main" includeantruntime="false">
+			<!-- Include generated sources in compilation -->
+				<src path="gen"/>
+
+				<!-- Classpath for dependencies -->
+				<classpath>
+					<fileset dir="lib" includes="*.jar">
+						<pathelement path="build/processor"/>
+					</classpath>
+
+					<!-- Annotation processor arguments -->
+					<compilerarg line="-processor com.example.MyAnnotationProcessor"/>
+					<compilerarg line="-s gen"/>
+				</javac>
+			</target>
+
+
+			<!-- Target to compile the source code -->
+			<target name="compile" depends="init">
+				<javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="classpath" includeantruntime="true"/>
+			</target>
+
+			<!-- Target to clean up the build directory -->
+			<target name="clean">
+				<delete dir="${build.dir}"/>
+			</target>
+
+		</project>
 

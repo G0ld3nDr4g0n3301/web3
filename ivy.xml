@@ -1,0 +1,7 @@
+<ivy-module version="2.0">
+  <info organisation="majere.raistlin" module="project-name"/>
+  <dependencies>
+    <dependency org="org.example" name="library" rev="1.0.0"/>
+  </dependencies>
+</ivy-module>
+
