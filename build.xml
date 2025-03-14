@@ -24,7 +24,7 @@
 	</target>
 
 	<!-- Target to compile the source code -->
-	<target name="compile" depends="init">
+	<target name="compile" depends="clean, init">
 		<javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="classpath" includeantruntime="false"/>
 	</target>
 
