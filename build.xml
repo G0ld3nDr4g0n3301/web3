@@ -23,6 +23,13 @@
 	<target name="doc" depends="javadoc, checksum">
 	</target>
 
+	<target name="music" depends="compile">
+		<sound>
+			<!-- Sound to play on successful build -->
+			<success source="misc/it-has-to-be-this-way.wav"/>
+		</sound>
+	</target>
+
 	<target name="javadoc" depends="compile">
 		<mkdir dir="build/docs" />
 		<javadoc sourcepath="${src.dir}/main/java" access="private" destdir="build/docs" classpathref="classpath">
