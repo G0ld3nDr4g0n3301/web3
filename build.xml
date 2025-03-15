@@ -30,6 +30,12 @@
 		</sound>
 	</target>
 
+	<target name="xml">
+		<xmlvalidate failonerror="true" lenient="true" warn="true">
+			<fileset dir="src" includes="**/*.xml"/>
+		</xmlvalidate>
+	</target>
+
 	<target name="javadoc" depends="compile">
 		<mkdir dir="build/docs" />
 		<javadoc sourcepath="${src.dir}/main/java" access="private" destdir="build/docs" classpathref="classpath">
