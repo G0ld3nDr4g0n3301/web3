@@ -19,6 +19,14 @@
 		<mkdir dir="${build.dir}"/>
 	</target>
 
+	<target name="javadoc">
+		<mkdir dir="build/docs" />
+		<javadoc sourcepath="${src.dir}/main/java" access="private" destdir="build/docs" classpathref="classpath">
+
+		</javadoc>
+	</target>
+
+
 	<target name="resolve" description="Retrieve dependencies with Ivy">
 		<ivy:retrieve/>
 	</target>
