@@ -3,9 +3,6 @@ package majere.raistlin;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 //import jakarta.annotation.*;
 import java.io.Serializable;
@@ -15,11 +12,19 @@ import jakarta.faces.bean.*;
 
 @Named("rCoordinateBean")
 @SessionScoped
-@NoArgsConstructor
-@Data
 public class RCoordinateBean implements Serializable{
     private Integer r = 3;
 
+    public RCoordinateBean(){
+    }
+
+    public void setR(Integer r){
+	    this.r = r;
+    }
+
+    public Integer getR(){
+	    return r;
+    }
 
     public void updateRadius(Integer new_r) {
         this.setR(new_r);

@@ -7,6 +7,7 @@
 	<property name="src.dir" value="src"/>
 	<property name="build.dir" value="build"/>
 	<property name="lib.dir" value="lib"/>
+	<property name="file.to.hash" value="build/web.jar" />
 
 	<!-- Define classpath -->
 	<path id="classpath">
@@ -18,6 +19,28 @@
 	<target name="init">
 		<mkdir dir="${build.dir}"/>
 	</target>
+
+	<target name="doc" depends="javadoc, checksum">
+	</target>
+
+	<target name="javadoc" depends="compile">
+		<mkdir dir="build/docs" />
+		<javadoc sourcepath="${src.dir}/main/java" access="private" destdir="build/docs" classpathref="classpath">
+
+		</javadoc>
+	</target>
+
+	<target name="checksum">
+
+
+		<checksum file="${file.to.hash}" algorithm="MD5" property="md5.value"/>
+		<checksum file="${file.to.hash}" algorithm="SHA-1" property="sha1.value"/>
+		<manifest file="build/META-INF/MANIFEST.MF">
+			<attribute name="MD5-Checksum" value="${md5.value}"/>
+			<attribute name="SHA1-Checksum" value="${sha1.value}"/>
+		</manifest>
+	</target>
+
 
 	<target name="resolve" description="Retrieve dependencies with Ivy">
 		<ivy:retrieve/>

@@ -7,8 +7,6 @@ import jakarta.inject.Named;
 import majere.raistlin.db.DBMFactory;
 import majere.raistlin.entities.ResultEntity;
 import jakarta.annotation.PostConstruct;
-import lombok.Getter;
-import lombok.Setter;
 import majere.raistlin.utils.AreaChecker;
 import jakarta.faces.annotation.ManagedProperty;
 //import jakarta.annotation.*;
@@ -16,8 +14,6 @@ import java.io.Serializable;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @Named("resultsControllerBean")
-@Getter
-@Setter
 @ApplicationScoped
 public class ResultsControllerBean implements Serializable{
 
